@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue14_Vue時鐘.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        #X .X1{
+            letter-spacing: 0.05em;
+            font-size: 40px;
+            padding: 5px 0;
+        }
+        #X .X2{
+            letter-spacing: 0.1em;
+            font-size: 24px;
+        }
+        #X{
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            color: #daf6ff;
+            text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+
+            font-family: 'Share Tech Mono', monospace;
+        }
+        body{
+            background: #0f3854;
+            background: radial-gradient(ellipse at center, #0a2e38 0%, #000000 70%);
+            background-size: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="X">
+        <p class="X1">{{date}}</p>
+        <p class="X2">{{time}}</p>        
+    </div>
+
+    <script>
+        var C = new Vue({
+            el: '#X',
+            data: {
+                time: "",
+                date: "",
+            }
+        });
+        var week = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
+        setInterval(updateTime, 500);
+        updateTime();
+        function updateTime() {            
+            var Z = new Date();
+            C.time = Pad(Z.getHours()) + "：" + Pad(Z.getMinutes()) + "：" + Pad(Z.getSeconds()) + "：" + Pad(Z.getMilliseconds());
+            C.date = Z.getFullYear() + "：" + Pad(Z.getMonth() + 1) + "：" + Pad(Z.getDate()) + week[Z.getDay()];
+        };
+        function Pad(num) {
+            if (num > 9)
+                return num;            
+            else
+                return "0" + num;
+        };
+    </script>
+
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+         
+    </form>
+</body>
+</html>

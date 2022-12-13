@@ -1,0 +1,8 @@
+﻿@Html.ActionLink("抓資料", "GetData", "Home", new { @class = "btn btn-primary"})
+@*按抓資料按鈕會去執行HomeController內的GetData()*@
+
+<h5>@TempData["Message"]</h5>
+<h5>股票代號：@TempData["StockId"]</h5>
+<h5>時間：@TempData["Time"]</h5>
+<h5>成交量：@TempData["Turnover"]</h5>
+<h5>公司：@TempData["Test"]</h5>

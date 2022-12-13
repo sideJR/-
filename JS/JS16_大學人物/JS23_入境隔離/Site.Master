@@ -1,0 +1,189 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JS23_入境隔離.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script>
+        var sp = " ";
+        //Delete
+        function Delete_Row(id) {
+            let current_Row = "row" + id;
+
+            document.getElementById(current_Row).outerHTML = "";
+        }
+        //Edit
+        function Edit_Row(id) {         
+            //按鈕消失、顯示
+            document.getElementById('edit_button' + id).style.display = "none";
+            //按鈕顯示
+            document.getElementById('save_button' + id).style.display = "inline";
+
+            let current_Name = "name_row" + id;
+            let name = document.getElementById(current_Name);
+
+            let Q1 = "<input type='text'";
+            let Q2 = "id ='name_text" + id + "'";
+            var name_data = name.innerHTML;
+            let Q3 = "value = '" + name_data + "' /> ";
+
+            let Q = Q1 + sp + Q2 + sp + Q3;
+
+            name.innerHTML = Q;
+
+            let current_Country = "country_row" + id;
+            let country = document.getElementById(current_Country);
+            
+            let S1 = "<input type='text'";
+            let S2 = "id='country_text" + id + "'";
+            let country_data = country.innerHTML;
+            let S3 = "value='" + country_data + "' >";
+
+            let S = S1 + sp + S2 + sp + S3;
+
+            country.innerHTML = S;
+
+            //Sex
+            let current_Sex = "sex_row" + id;
+            let sex = document.getElementById(current_Sex);
+
+            let X1 = "<input type='text'";
+            let X2 = "id='sex_text" + id + "'";
+            let sex_data = sex.innerHTML;
+            let X3 = "value='" + sex_data + "' >";
+
+            let X = X1 + sp + X2 + sp + X3;
+
+            sex.innerHTML = X;
+        }
+        //Save
+        function Save_Row(id) {
+            document.getElementById('edit_button' + id).style.display = "inline";
+            document.getElementById('save_button' + id).style.display = "none";
+
+            let current_Name_Text = "name_text" + id;
+            let current_Name = "name_row" + id;
+            var name_val = document.getElementById(current_Name_Text).value;
+            document.getElementById(current_Name).innerHTML = name_val;
+
+            let current_Country_Text = "country_text" + id;
+            let country_val = document.getElementById(current_Country_Text).value;
+            let current_Country = "country_row" + id;
+
+            document.getElementById(current_Country).innerHTML = country_val;
+
+            let current_Sex_Text = "sex_text" + id;
+            let sex_val = document.getElementById(current_Sex_Text).value;
+            let current_Sex = "sex_row" + id;
+
+            document.getElementById(current_Sex).innerHTML = sex_val;
+        }
+        //Add
+        function Add_Row() {
+            let new_name = document.getElementById('new_name').value;
+            let new_country = document.getElementById('new_country').value;
+            let new_sex = document.getElementById('new_sex').value;
+
+            let table = document.getElementById('X');
+            let table_len = (table.rows.length) - 1;
+            let currentRow = "row" + table_len;
+            let currentName = "name_row" + table_len;
+            let currentCountry = "country_row" + table_len;
+            let currentSex = "sex_row" + table_len;
+
+            let R1 = "<tr id='" + currentRow + "'>";
+            let R2 = "<td id='" + currentName + "'>" + new_name + "</td>";
+            //新增國家
+            R2 += "<td id='" + currentCountry + "'>" + new_country + "</td>";
+            //新增性別
+            R2 += "<td id='" + currentSex + "'>" + new_sex + "</td>";
+            let current_Edit = "edit_button" + table_len;
+            let R3 = "<td><input type='button' id='" + current_Edit + "' value='編輯' onclick='Edit_Row(" + table_len + ")'>";
+            let current_Save = "save_button" + table_len;
+            let R4 = "<input type='button' id='" + current_Save + "' value='儲存' onclick='Save_Row(" + table_len + ")' style='display: none'>";            
+            let R5 = "<input type='button' value='刪除' onclick='Delete_Row(" + table_len + ")'>";
+            let R6 = "</td></tr>";
+
+            let R = R1 + R2 + R3 + R4 + R5 + R6;
+
+            table.insertRow(table_len).outerHTML = R;
+            document.getElementById('new_name').value = "";
+            document.getElementById('new_country').value = "";
+            document.getElementById('new_sex').value = "";
+        }
+    </script>
+
+</head>
+<body>
+    <h3>入境隔離名單</h3>
+    <table id="X" border="1">
+        <tr>
+            <th>姓名</th>
+            <th>國家</th>
+            <th>性別</th>
+        </tr>
+        <tr id="row1">
+            <td id="name_row1">王阿花</td>
+            <td id="country_row1">日本</td>
+            <td id="sex_row1">女</td>
+            <td>
+                <input type="button" value="編輯" id="edit_button1" onclick="Edit_Row('1')" />
+                <input type="button" value="儲存" id="save_button1" style="display:none" onclick="Save_Row('1')" />
+                <input type="button" value="刪除" onclick="Delete_Row('1')" />
+            </td>
+        </tr>
+        <tr id="row2">
+            <td id="name_row2">陳大頭</td>
+            <td id="country_row2">泰國</td>
+            <td id="sex_row2">男</td>
+            <td>
+                <input type="button" value="編輯" id="edit_button2" onclick="Edit_Row('2')" />
+                <input type="button" value="儲存" id="save_button2" style="display:none" onclick="Save_Row('2')" />
+                <input type="button" value="刪除" onclick="Delete_Row('2')" />
+            </td>
+        </tr>
+        <tr id="row3">
+            <td id="name_row3">張三</td>
+            <td id="country_row3">韓國</td>
+            <td id="sex_row3">男</td>
+            <td>
+                <input type="button" value="編輯" id="edit_button3" onclick="Edit_Row('3')" />
+                <input type="button" value="儲存" id="save_button3" style="display:none" onclick="Save_Row('3')" />
+                <input type="button" value="刪除" onclick="Delete_Row('3')" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="new_name" />
+                <input type="text" id="new_country" />
+                <input type="text" id="new_sex" />
+            </td>
+            <td>
+                <input type="button" onclick="Add_Row()" value="新增" />
+            </td>
+        </tr>
+    </table>
+
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

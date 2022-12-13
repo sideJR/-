@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue7_度量衡轉換.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        .cr1{
+            color: white;
+        }
+
+        .cr2{
+            color: blue;
+        }
+
+        input{
+            font-size: 16px;
+            width: 100px;
+            background: pink;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="X" v-bind:style="{backgroundColor: C}">
+
+        背景顏色<input class="cr1" type="text" v-model="C" />
+
+        <button v-on:click="S++">字型變大</button>
+        <button v-on:click="S--">字型變小</button>
+        <p v-bind:stye="{fontSize: S + 'px'}">度量衡換算</p>
+
+        <input class="cr2" type="text" v-model="K" />公里
+        =
+        <input class="cr2" type="text" v-model="M" />公尺
+        <br/>
+        <input class="cr2" type="text" v-model="K2" />公斤
+        =
+        <input class="cr2" type="text" v-model="M2" />英鎊
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',            
+            data() {
+                return {
+                    K: 0,
+                    M: 0,
+                    K2: 0,
+                    M2: 0,
+                    S: 14,
+                    C: "lightyellow"
+                }
+            },
+            watch: {
+                K: function (val) {
+                    this.K = val;
+                    this.M = val * 1000;
+                },
+                M: function (val) {
+                    this.K = val / 1000;
+                    this.M = val;
+                },
+                K2: function (val) {
+                    this.K2 = val;
+                    this.M2 = val / 2.02;
+                },
+                M2: function (val) {
+                    this.K2 = val * 2.02;
+                    this.M2 = val;
+                },
+            },
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+          
+    </form>
+</body>
+</html>

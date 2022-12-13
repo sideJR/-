@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue13_百變視窗", "Vue13_百變視窗\Vue13_百變視窗.csproj", "{A61552C7-8EE0-4CB7-B177-16B39367857F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A61552C7-8EE0-4CB7-B177-16B39367857F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61552C7-8EE0-4CB7-B177-16B39367857F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61552C7-8EE0-4CB7-B177-16B39367857F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61552C7-8EE0-4CB7-B177-16B39367857F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2591B0FA-1B08-42F5-8D83-349C05833145}
+	EndGlobalSection
+EndGlobal

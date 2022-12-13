@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue1_訂購系統.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="A">
+        <input type="radio" name="x" v-model="sex" value="先生" />男
+        <input type="radio" name="x" v-model="sex" value="小姐" />女
+        <input type="radio" name="x" v-model="sex" value="" />不告訴你
+        <br />
+
+        <input type="text" v-model="name.first" placeholder="姓" />
+        <input type="text" v-model="name.second" placeholder="名" />
+        <br />
+
+        <button v-on:click="count = count + 1">訂購</button>
+        <button v-on:click="count = count * 2">訂購雙倍</button>
+        <button v-on:click="count = 0">取消</button>
+
+        <%-- {{...}} 表示要接收變數直--%>
+        歡迎{{name.first}}{{name.second}}{{sex}}
+        訂購{{count}}份
+    </div>
+
+    <script>
+        new Vue({
+            el: '#A',
+            data: {
+                count:0,
+                name: {
+                    first: '',
+                    second:'',
+                }
+            }
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+            
+
+    </form>
+</body>
+</html>

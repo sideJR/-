@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue3_雞排小舖.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="cart">
+        <button @click="doOne">索取特價優惠</button>
+        <input @change="doTwo" v-model="name" type="text" placeholder="輸入名字可打折" />
+        <button @click="doThree">打折</button>
+        <button @click="doFour">打6折</button>
+        <ul v-for="food in foods">
+            <li>
+                {{food.title}}{{food.price}}元 * 
+                <input size="1" v-model="food.amount"/>份 = {{food.price * food.amount}}元             
+            </li>
+        </ul>
+        共計{{total}}元
+        
+    </div>
+    
+    <script>
+        var data = [
+            {
+                title: '雞排',
+                price: 55,
+                amount: 1
+            }, {
+                title: '薯條',
+                price: 40,
+                amount: 1
+            }, {
+                title: '可樂',
+                price: 25,
+                amount: 1
+            }];
+        var vm = new Vue({
+            el: '#cart',
+            data: {
+                name:''
+            },
+            methods: {
+                doOne() {
+                    alert('優惠時間已過QAQ')
+                },
+                doTwo() {
+                    alert(this.name + '太難聽沒打折!!!')
+                },
+                doThree() {
+                    alert('已經幫你打折了!!!')
+                },
+                doFour() {
+                    alert('打折後金額：' + this.total * 0.6 + '元')
+                }
+            },
+            data: {
+                foods: data
+            },
+            computed: {
+                total: function () {
+                    var sum = 0;
+                    for (var i in this.foods) {
+                        sum += this.foods[i].price * this.foods[i].amount;
+                    }
+                    return sum;
+                }
+            }
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+            
+    </form>
+</body>
+</html>

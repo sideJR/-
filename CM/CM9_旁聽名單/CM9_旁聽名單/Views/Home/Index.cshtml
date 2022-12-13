@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CM9_旁聽名單.Models.Student>
+
+<h4>旁聽名單</h4>
+
+<table id="A" style="display:none">
+    <tr>
+        <th>編號</th>
+        <th>姓名</th>
+        <th>性別</th>
+        <th>科系</th>
+        @foreach (var x in Model)
+        {
+<tr>
+                <td>@x.Id</td>
+                <td>@x.Name</td>
+                <td>@x.Sex</td>
+                <td>@x.Department</td>
+            </tr>
+        }
+    </tr>
+</table>
+<br />
+
+<table id="B" border="1">
+    <tr>
+        <td class="Q">編號</td>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <td>0</td>
+        }
+    </tr>
+    <tr>
+        <td class="Q">姓名</td>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <td>X</td>
+        }
+    </tr>
+    <tr>
+        <td class="Q">性別</td>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <td>X</td>
+        }
+    </tr>
+    <tr>
+        <td class="Q">科系</td>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <td>X</td>
+        }
+    </tr>
+</table>
+
+<script>
+    var colnum = document.getElementById('A').rows[0].cells.length;
+    var rownum = document.getElementById('A').rows.length;
+    for (let j = 0; j < rownum; j++) {
+        for (let i = 0; i < colnum; i++) {
+            document.getElementById('B').rows[i].cells.item(j+1).innerHTML = document.getElementById('A').rows[j+1].cells.item(i).innerHTML;
+        }    
+    }
+    
+</script>

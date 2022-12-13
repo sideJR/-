@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue9_顧客管理.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    
+    <style>
+        input{
+            font-size: 20px;
+        }
+        .Table{
+            display: table;
+            width: 80%;
+        }
+        .Row{
+            display: table-row;
+        }
+        .Cell{
+            display: table-cell;
+            border: solid;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="X">
+        <h1>客戶資料</h1>
+        <input type="text" placeholder="姓" v-model="A" />
+        <input type="text" placeholder="名" v-model="B"/>
+        <input type="text" placeholder="稱呼" v-model="T"/>
+
+        <button v-on:click="Show" v-bind:style="S">新增</button>
+        <br /><br />
+        
+        <C v-for="(member, id) in Customers" v-bind:item="member" v-bind:index="id" v-bind:person="member" v-bind:key="member.givenname" v-on:remove="Customers.splice(id, 1)"></C>
+    </div>
+    <script>
+        Vue.component('C', {
+            template: '<div class="Table"><div class="Row"><div class="Cell">{{person.surname}}</div><div class="Cell">{{person.givenname}}</div><div class="Cell">{{person.title}}</div><div class="Cell" v-on:click="$emit(\'remove\')"><button>X</button></div></div></div>',
+            props: ['person', 'index'],
+        });
+        new Vue({
+            el: '#X',
+            data: {
+                surname: "",
+                givenname: "",
+                title: "",
+                Customers: [],
+                S: {
+                    backgroundColor: "lightgreen",
+                    padding: "8px 16px",
+                    cursor: "pointer",
+                }
+            },
+            methods: {
+                Show: function () {
+                    this.Customers.push({
+                        surname : this.A,
+                        givenname: this.B,
+                        title: this.T,
+                    });
+                    this.A = "";
+                    this.B = "";
+                    this.T = "";
+                }
+            },
+        })
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+            
+    </form>
+</body>
+</html>

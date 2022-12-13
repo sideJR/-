@@ -1,0 +1,93 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue12_大衛魔術.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        .slide-fade-enter-active{
+            transition: all 3s ease;
+        }
+        .slide-fade-enter{
+            transform: translateX(100px);
+        }
+
+        .slide-fade-leave-active{
+                    transition: all 5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-leave-to{
+            transform: translateX(80px);
+            opacity: 0;
+        }
+        .bounce-enter-active{
+            animation: bounce-in 5s;
+        }
+        @keyframes bounce-in{
+            0%{
+                transform: scale(0);
+            }
+            33%{
+                transform: scale(2);
+            }
+            50%{
+                transform: scale(2);
+            }
+            88%{
+                transform: scale(4);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+        .bounce-leave-active{
+            animation: bounce-in 5s reverse;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="X">
+        <button @click="S = !S">變</button>
+        <transition name="slide-fade">
+            <p v-if="S">大衛 David</p>
+        </transition> 
+        <transition name="bounce">
+            <p v-if="S" style="width:200px">魔術、魔術，我是魔術之王。魔術、魔術，我是魔術之王。魔術、魔術，我是魔術之王。魔術、魔術，我是魔術之王。</p>           
+        </transition>      
+        
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                S: false
+            }
+        })
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+          
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue21_視窗與背景.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        html, body, #app{
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app" v-bind:style="{backgroundColor:mycolor}">
+        請輸入顏色：<input type="text" style="font-size:32px" v-bind:style="{color:mycolor}" />
+        <input type="color" v-model="mycolor" />
+        <button @click="Test()">螢幕大小</button>
+        <button @click="openWindow()" :disabled=mystatus>Open Window</button>
+        <button @click="closeWindow()" :disabled=mystatus_close>Close Window</button>
+        <button @click="ChangeStatus()">控制OpenWindow按鈕</button>
+        <button @click="ChangeStatus_close()">控制CloseWindow按鈕</button>
+        <p>{{result}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                mycolor: 'red',
+                result: '',
+                myWindow: '',
+                mystatus: true,
+                mystatus_close: true,
+            },
+            methods: {
+                Test: function () {
+                    this.result = "寬" + screen.width + "px 高" + screen.height + "px";
+                },
+                openWindow: function () {
+                    this.myWindow = window.open("", "myWindow", "width=500, height=300");
+                    this.myWindow.document.write("<h1>新年快樂</h1>");
+                },
+                closeWindow: function () {
+                    this.myWindow.close();
+                },
+                ChangeStatus: function () {
+                    if (this.mystatus) {
+                        this.mystatus = false;
+                    }
+                    else {
+                        this.mystatus = true;
+                    }
+                },
+                ChangeStatus_close: function () {
+                    if (this.mystatus_close) {
+                        this.mystatus_close = false;
+                    }
+                    else {
+                        this.mystatus_close = true;
+                    }
+                },
+            },
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

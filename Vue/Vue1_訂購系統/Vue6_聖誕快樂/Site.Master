@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue6_聖誕快樂.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        button{
+            width: 50px;
+            height: 50px;
+            position: relative;
+            top: 20px;
+            border: none;
+            color: #fff;
+            border-radius: 50%;
+            background-color: yellow;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        button:active{
+            width: 45px;
+            height: 45px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id ="X">
+        <canvas id="Z" width="300" height="150" v-put-message="C" style="border:1px solid red;"></canvas>
+        <input type="text" v-model="C" />
+        <span>{{C}}</span>
+        <br />
+        <button type="submit" @click="DoOne()"></button>
+    </div>
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                "C": "聖誕快樂"
+            },
+            methods: {
+                DoOne: function () {
+                    $("#Z").css({
+                        border: "5px solid green"
+                    });
+                    $("button").css({
+                        backgroundColor: "red", width: "80"
+                    });
+                    $("input").css({
+                        border: "5px solid green"
+                    });
+                    $("span").css({
+                        color: "green"
+                    });
+                }
+            },
+            directives: {
+                putMessage: function (M, binding) {
+                    var T = M.getContext("2d");
+                    T.clearRect(0, 0, 300, 150);
+                    T.font = "20px Georgia";
+                    T.fillStyle = "blue";
+
+                    T.fillText(binding.value, 10, 50);
+                }
+            }
+        })
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+            
+    </form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue20_美女圖庫.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="X">
+        <input type="text" v-model="search" placeholder="輸入名字" />
+        <h3>{{Topic}}</h3>
+        <div v-for="post in filteredList">
+            <a v-bind:href="post.link">
+                {{post.name}}
+                <br />
+                <textbox>{{post.introduce}}</textbox>                
+                <br />
+                <img style="height:100px" v-bind:src="post.img" />               
+            </a>
+        </div>
+        
+    </div>
+
+    <script>
+        class Post {
+            constructor(name, img, link, introduce) {
+                this.name = name;
+                this.img = img;
+                this.link = link;
+                this.introduce = introduce;
+            }
+        }
+        new Vue({
+            el: '#X',
+            data: {
+                Tpoic: "美女圖庫",
+                search: '',
+                postList: [new Post('周子瑜', 'https://tinyurl.com/3jkt7esd', 'https://tinyurl.com/4ke7v3nb', '活躍於韓國的臺灣女歌手'),
+                    new Post('林志玲', 'https://tinyurl.com/d5wzpr57', 'https://tinyurl.com/2p9e5ydd', '出生臺灣模特兒、主持人、演員及歌手'),
+                    new Post('林青霞', 'https://tinyurl.com/2h4nhpmc', 'https://tinyurl.com/mtdef4b5', '臺灣影視演員、作家'),
+                    new Post('IU', 'https://image.bugsm.co.kr/artist/images/1000/800491/80049126.jpg', 'https://zh.m.wikipedia.org/zh-tw/IU_(%E6%AD%8C%E6%89%8B)', '韓國創作歌手、演員')],
+            },
+            computed: {
+                filteredList() {
+                    return this.postList.filter(post => {
+                        return post.name.includes(this.search);
+                    });
+                }
+            },
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+
+    </form>
+</body>
+</html>

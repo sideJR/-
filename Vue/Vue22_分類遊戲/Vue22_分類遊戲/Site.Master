@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue22_分類遊戲.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-draggable@1.0.9/lib/vue-draggable.js"></script>
+
+    <style>
+        ul{
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+            padding: 3px;
+            float: left;
+            list-style-type:none;
+            background: #8adccc;
+            margin-right: 5px;
+        }
+        li{
+            display: block;
+            list-style-type: none;
+            margin: auto;
+            padding: 0.2em 0.4em;
+            border-radius: 0.2em;
+        }
+        li:hover{
+            box-shadow: 0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+        }
+        #B{
+            background-color: red;
+        }
+        #C{
+            background-color: blue;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="X">
+
+    </div>
+
+    <script>
+        Vue.use(VueDraggable.default);
+        new Vue({
+            template: `<div v-drag-and-drop:options="Q">
+                            <ul>
+                                <li>蘋果</li>
+                                <li>鳳仙</li>
+                                <li>鳳梨</li>
+                            </ul>
+                            <ul id='B'>
+                                <li>玫瑰</li>
+                                <li>香蕉</li>
+                                <li>百合</li>
+                            </ul>
+                            <ul id='C'>
+                                <li>玫瑰2</li>
+                                <li>香蕉2</li>
+                                <li>百合2</li>
+                            </ul>
+                        </div>`,
+            data() {
+                return {
+                    Q: {
+                        onDragend() {
+
+                        }
+                    }
+                }
+            },
+        }).$mount('#X')
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+          
+    </form>
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue19_三子棋.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        .chess{
+            width: 400px;
+            height: 400px;
+            background-color: lightyellow;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .grid{
+            width: 25%;
+            height: 25%;
+            border:1px solid gray;      
+            box-sizing: border-box;
+            font-size: 60px;            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h3{
+            font-size: 40px;
+            width: 400px;
+            color: darkcyan;
+            border-bottom: 1px dashed #046f6f;
+        }
+        .Z{
+            font-size: 20px;
+            background-color: #f6ae22;
+            color: #fff;
+            padding: 7px 15px;
+            margin: 0px 0px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="X">
+        <h3>輪到
+            <span style="color:black">{{setSymbol(player)}}</span>
+            &nbsp &nbsp
+            <span style="color:red">贏家：{{setSymbol(winner)}}</span>
+        </h3>
+        <button class="Z" @click="Reset">重玩</button>
+        <div class="chess">
+            <div class="grid" v-for="(grid, idx) in grids" @click="setGrid(idx)">{{setSymbol(grid)}}</div>
+        </div>        
+    </div>
+
+    <script>
+        const winLineSets = [
+            [0, 1, 2, 3],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [12, 13, 14, 15],
+
+            [0, 4, 8, 12],
+            [1, 5, 9, 13],
+            [2, 6, 10, 14],
+            [3, 7, 11, 15],
+
+            [0, 5, 10, 15],
+            [3, 6, 9, 12],           
+        ]
+        new Vue({
+            el: '#X',
+            data: {
+                player: -1,
+                grids: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            },
+            methods: {
+                setSymbol(num) {
+                    return num === 0 ? '' : num === 1 ? 'O' : 'X';
+                },
+                setGrid(idx) {
+                    if (this.grids[idx] !== 0)
+                        return;
+                    if (this.winner !== 0)
+                        return;
+
+                    this.player = - this.player;
+                    this.$set(this.grids, idx, this.player);
+                },
+                Reset() {
+                    this.grids = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    this.player = -1;
+                },
+            },
+            computed: {
+                winner() {
+                    return winLineSets.reduce((winner, [a, b, c, d]) => {
+                        if(winner !== 0)
+                            return winner;
+                        const sum = this.grids[a] + this.grids[b] + this.grids[c] + this.grids[d];
+                        if (sum === 4)
+                            return 1;
+                        if (sum === -4)
+                            return -1;
+                        return 0;
+                    }, 0);
+                },
+            },
+        })
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+            
+    </form>
+</body>
+</html>

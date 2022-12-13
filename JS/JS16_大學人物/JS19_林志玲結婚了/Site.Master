@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JS19_林志玲結婚了.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <script>
+        var marriage = (male, female) => {
+            return "新郎" + male + "新娘" + female + "結婚";
+        }
+        var bridegroom = "Akira";
+        { let bridegroom = "言承旭";}
+        var bride = "林志玲";
+        var couple = marriage(bridegroom, bride);
+
+        document.write("恭喜" + couple);
+
+        var AkiraMoney = 0.3;
+        var LinMoney = 1;
+        var Sum = (x, y=1) => {
+            return x + y;
+        }
+       
+        document.write("<br/>");
+
+        var totalMoney = Sum(AkiraMoney, LinMoney);
+
+        document.write("財產總計" + totalMoney + "億");
+        document.write("<br/><br/>林志玲的追求者：<br/>");
+
+        var money = [0.4, 0.9, 50, 1000];
+        var Name = ["Akira", "言承旭", "邱士凱", "郭台銘"];
+
+        for (i = 0; i < 4; i++) {
+            document.write(Name[i] + "身價" + money[i] + "億<br/>");
+        }
+
+        var minMoney = 40;
+        var maxMoney = 60;
+        function MyTest(value, index, array) {
+            return value >= minMoney && value <= maxMoney;
+        }
+        var x = money.findIndex(MyTest);
+
+        document.write("<br/>身價介於" + minMoney + "億與" + maxMoney + "億間的是" + Name[x]);
+
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

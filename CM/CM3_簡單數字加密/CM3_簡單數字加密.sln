@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CM3_簡單數字加密", "CM3_簡單數字加密\CM3_簡單數字加密.csproj", "{E56C49AD-934E-499E-9C6F-42F4DA7B6DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CM5_雲端 3-DES 加密", "CM5_雲端 3-DES 加密\CM5_雲端 3-DES 加密.csproj", "{4FCFCEDB-A50A-44F1-9A79-A0C31AA8B138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CM6_台灣新冠疫情通報", "CM6_台灣新冠疫情通報\CM6_台灣新冠疫情通報.csproj", "{4AD5EA17-C5B0-49A3-8E13-1625EE0B7B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHost", "CM7_銘傳數學家\MyHost.csproj", "{1B36EC47-BE83-4EBC-AC50-D61DB47C9F37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E56C49AD-934E-499E-9C6F-42F4DA7B6DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E56C49AD-934E-499E-9C6F-42F4DA7B6DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E56C49AD-934E-499E-9C6F-42F4DA7B6DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E56C49AD-934E-499E-9C6F-42F4DA7B6DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FCFCEDB-A50A-44F1-9A79-A0C31AA8B138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FCFCEDB-A50A-44F1-9A79-A0C31AA8B138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FCFCEDB-A50A-44F1-9A79-A0C31AA8B138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FCFCEDB-A50A-44F1-9A79-A0C31AA8B138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AD5EA17-C5B0-49A3-8E13-1625EE0B7B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD5EA17-C5B0-49A3-8E13-1625EE0B7B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD5EA17-C5B0-49A3-8E13-1625EE0B7B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD5EA17-C5B0-49A3-8E13-1625EE0B7B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B36EC47-BE83-4EBC-AC50-D61DB47C9F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B36EC47-BE83-4EBC-AC50-D61DB47C9F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B36EC47-BE83-4EBC-AC50-D61DB47C9F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B36EC47-BE83-4EBC-AC50-D61DB47C9F37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A41E6DB9-5BEA-4900-9B51-B4C19CFF2507}
+	EndGlobalSection
+EndGlobal

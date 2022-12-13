@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue11_血型心理.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+   
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="X">
+        <div>請問你的血型?</div>
+        
+        <div>你是{{a}}</div>
+        <span v-for="z in B">
+            {{z.id}}.
+            <input type="radio" :id="z.id" :value="z.character + '，幸運色是' + z.color" v-model="a" />
+            <label for="z.id">{{z.bloodtype}}</label>        
+        </span>
+        <div v-for="p in B">
+            <h3>{{p.bloodtype}}戀愛配對</h3>
+            <div v-for="q in B">
+                <h3>男生{{p.bloodtype}} 配 女生{{q.bloodtype}}，男的{{p.character}}、女的{{q.character}}，情侶搭配幸運色：男{{p.color}}、女{{q.color}}。</h3>
+            </div>
+            <div v-for="q in B">
+                <h3>女生{{p.bloodtype}} 配 男生{{q.bloodtype}}，女的{{p.character}}、男的{{q.character}}，情侶搭配幸運色：女{{p.color}}、男{{q.color}}。</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: function data() {
+                return {
+                    a: "",
+                    B: [
+                        { id: '1', bloodtype: 'O型', character: '熱情', color: '黃色' },
+                        { id: '2', bloodtype: 'A型', character: '內斂', color: '綠色' },
+                        { id: '3', bloodtype: 'B型', character: '理智', color: '紫色' },
+                        { id: '4', bloodtype: 'AB型', character: '善變', color: '紅色' },
+                    ]
+                };
+            }
+        });
+    </script>
+
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue8_第一美女.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="A">
+        <T></T>
+    </div>
+    <div id="B">
+        <T></T>
+    </div>
+    <script>
+        Vue.component('T', {
+            template: '<div v-on:mouseover="DoOne()" v-on:mouseout="DoTwo()" v-on:mousedown="DoThree()" v-on:mouseup="DoFour()" v-on:click.left="DoFive()" v-on:click.right="DoSix()"><h1>{{region}}第一{{title}}<span id="name">{{name}}</span></h1></div>',
+            data: function () {
+                return {
+                    name: "林志玲",
+                    title: "Beauty",
+                    region: "台灣"
+                }
+            },
+            methods: {
+                DoOne: function () {
+                    this.name = "周子瑜";
+                    this.region = "亞洲";
+                },
+                DoTwo: function () {
+                    this.name = "林志玲";
+                },
+                DoThree: function () {
+                    this.name = "真的是他嗎?";
+                },
+                DoFour: function () {
+                    this.name = "在銘傳";
+                },
+                DoFive: function () {
+                    this.title = "美女";
+                },
+                DoSix: function () {
+                    this.title = "Beauty";
+                },
+            }
+        });
+        new Vue({
+            el: '#A'
+        });
+        new Vue({
+            el: '#B'
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

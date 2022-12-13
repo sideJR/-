@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue15_大通汽車.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+
+</head>
+<body>
+    <div id="X">
+        <h3>{{topic}}</h3>
+        <ve-line :data="CarsData"></ve-line>
+        <ve-line :data="PeopleData"></ve-line>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: function () {
+                return {
+                    topic: "大通汽車銷售統計",
+                    PeopleData: {
+                        columns: ['Name', '銷售額(百萬)'],
+                        rows: [
+                            { 'Name': "陳大頭", '銷售額(百萬)': 100 },
+                            { 'Name': "王阿花", '銷售額(百萬)': 152 },
+                            { 'Name': "張可可", '銷售額(百萬)': 212 },
+                        ]
+                    },
+                    CarsData: {
+                        columns: ['date', '銷售量(輛)', '銷售額(百萬)', '我是第3條線'],
+                        rows: [
+                            { 'date': "1月1日", '銷售量(輛)': 12, '銷售額(百萬)': 6, '我是第3條線': 61},
+                            { 'date': "1月2日", '銷售量(輛)': 122, '銷售額(百萬)': 65, '我是第3條線': 22},
+                            { 'date': "1月3日", '銷售量(輛)': 212, '銷售額(百萬)': 100, '我是第3條線': 3},
+                            { 'date': "1月4日", '銷售量(輛)': 412, '銷售額(百萬)': 200, '我是第3條線': 42},
+                        ]
+                    }
+                }
+            }
+        });
+    </script>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+      
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+          
+    </form>
+</body>
+</html>

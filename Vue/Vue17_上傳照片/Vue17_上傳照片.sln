@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue17_上傳照片", "Vue17_上傳照片\Vue17_上傳照片.csproj", "{63D0CE7C-4378-4F8F-ADEA-5FF370C70D3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63D0CE7C-4378-4F8F-ADEA-5FF370C70D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D0CE7C-4378-4F8F-ADEA-5FF370C70D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D0CE7C-4378-4F8F-ADEA-5FF370C70D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D0CE7C-4378-4F8F-ADEA-5FF370C70D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {189AC404-F968-48F7-9552-6B710AC3C511}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue4_找水果.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="X">
+        <select v-model="T">
+            <option disabled value="">用戶身分</option>
+            <option value="教授">老師</option>
+            <option value="同學">學生</option>
+            <option value="夥伴">職員</option>
+        </select>
+        <select v-model="Sex">
+            <option disabled value="">用戶性別</option>
+            <option value="先生">男生</option>
+            <option value="女士">女生</option>           
+        </select>
+        <span>{{T}}{{Sex}}您好</span>
+        <br />
+
+        <label for="R">忽略大小寫</label>
+        <input type="checkbox" id="R" v-model="s" />
+        <br />
+        
+        <label for="Q">Find：</label>
+        <input v-model="findName" id="Q" type="text" />
+        <ui>
+            <li v-for="p in CertainFruits">
+                {{p}}
+            </li>
+        </ui>        
+    </div>
+    <script>
+        new Vue({
+            el: '#X',
+            data() {
+                return {
+                    T: '',
+                    Sex:'',
+                    findName: '',
+                    s: true,
+                    Fruits: [
+                        'Apple',
+                        'Banana',
+                        'Orange',
+                        'Mango',
+                        'Grape'
+                    ]
+                }
+            },
+            computed: {
+                CertainFruits() {
+                    if (this.s) {
+                        let filter = new RegExp(this.findName, 'i')
+                        return this.Fruits.filter(el => el.match(filter))
+                    }
+                    else {
+                        let filter = new RegExp(this.findName)
+                        return this.Fruits.filter(el => el.match(filter))
+                    }
+                    
+                    
+                }
+            }
+        })
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+         
+
+    </form>
+</body>
+</html>

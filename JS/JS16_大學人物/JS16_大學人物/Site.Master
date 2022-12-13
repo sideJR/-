@@ -1,0 +1,95 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JS16_大學人物.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+   
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+
+    <script>
+        function Student(id, name, age) {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+
+            this.Show = function () {
+                return ("學號：" + this.id + " 姓名：" + this.name + " 年齡：" + this.age);
+            }
+        }
+        var Student1 = new Student("s001", "陳大頭", 20);
+        var Student2 = new Student("s002", "王阿花", 19);
+        var Student3 = new Student("s003", "小菜", 21);
+
+        document.write(Student1.Show());
+        document.write("<br/>");
+        document.write(Student2.Show());
+        document.write("<br/>");
+        document.write(Student3.Show());
+
+        //const 表固定不變
+        const Teacher = {
+            dept: "資管所",
+            name: "張小呆"
+        };
+        const Position = {
+            title: "副教授"
+        };
+
+        const Teacher1 = Object.assign(Teacher, Position);
+        document.write("<br/>");
+        document.write(Teacher1.dept + Teacher1.name + Teacher1.title);
+
+        class Staff {
+            constructor(name, position) {
+                this.name = name;
+                this.position = position;
+            }
+        }
+
+        const Staff1 = new Staff("孫美美", "助教");
+        document.write("<br/>");
+        document.write(Staff1.name + Staff1.position);
+
+        var Team = {
+            name: "校隊",
+            kind: "籃球",
+            members: {
+                couch: {
+                    main: "許大華",
+                    second:"蘇自大",
+                },
+                manager: "張小妹",
+                member: {
+                    main: "王小妹",
+                    second: "老張",
+                },
+            }
+        };
+
+        document.write("<br/>");
+        document.write(Team.kind + Team.name + " 總教練" + Team.members.couch.main + " 助理教練" + Team.members.couch.second + " 球經" + Team.members.manager + " 隊長" + Team.members.member.main + " 副隊長" + Team.members.member.second);
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

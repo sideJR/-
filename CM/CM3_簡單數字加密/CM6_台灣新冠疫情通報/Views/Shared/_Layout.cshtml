@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#B').click(function () {
+                $.ajax({
+                    url: "Home/Report",
+                    data: { Notice: VirusName },
+                    success: function (msg) {
+                        $('#A').html("<p style='color:red'>" + msg + "</p>");
+                    },
+                    error: function () {
+                        alert("Sorry");
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <p style="color:darkred">台灣疫情通報</p>
+    <button id="B">上傳</button>
+    <hr />
+
+    <div id="A" style="background-color:lightgoldenrodyellow;height:200px"></div>
+
+    <script>
+        let Virus = { ChineseName: "新冠疫情", EnglishName: "Covid-19" };
+        let VirusName = JSON.stringify(Virus);
+        let VirusObj = JSON.parse(VirusName);
+        $("#A").html(VirusObj.ChineseName + "(" + VirusObj.EnglishName + ")");
+    </script>
+
+    @RenderBody()
+        
+</body>
+</html>

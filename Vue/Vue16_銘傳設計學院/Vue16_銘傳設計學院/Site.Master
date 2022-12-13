@@ -1,0 +1,135 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue16_銘傳設計學院.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        ul{
+            life-style-type: none;
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar a{
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn{
+            background-color: black;
+        }
+        .dropdown{
+            float: left;
+            overflow: hidden;
+        }
+        .dropdown-content{
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown .dropbtn{
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .dropdown-content a{
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display:block;
+            text-align: left;
+        }
+        .dropdown-content a:hover{
+            background-color: #ddd;
+        }
+        .dropdown-enter,
+        .dropdown-leave-to{
+            transform: scaleY(0.7);
+            opacity: 0;
+        }
+        .dropdown-enter-to,
+        .dropdown-leave{
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        .dropdown-enter-active, 
+        .dropdown-leave-active{
+            transition: all 0.3s ease-out;
+            transform-origin: top center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="X">
+        <ul class="navbar">
+            <li>
+                <a href="http://web.sd.mcu.edu.tw">設計學院</a>
+            </li>
+            <li>
+                <a href="https://tinyurl.com/rfwecjn">概況</a>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn" @mouseover="show = true" @mouseout="show = false">學系 &#8595</button>
+                <transition name="dropdown">
+                    <ul class="dropdown-content" v-if="show" @mouseover="show = true" @mouseout="show = false">
+                        <li>
+                            <a href="http://web.pdd.mcu.edu.tw">商品系</a>
+                        </li>
+                        <li>
+                            <a href="http://mcucd.mcu.edu.tw">商設系</a>
+                        </li>
+                        <li>
+                            <a href="http://web.sd.mcu.edu.tw/">數媒系</a>
+                        </li>
+                    </ul>
+                </transition>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                show: false,
+            }
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+      
+    </form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue13_百變視窗.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="X" v-bind:style="{backgroundColor:C}">
+        <h1 v-model="C2" v-bind:style="{color:C2}">背景顏色{{C}}</h1>
+        <h1 v-model="C2" v-bind:style="{color:C2}">視窗寬度{{Q.width}}高度{{Q.height}}</h1>
+        <h1 v-model="C2" v-bind:style="{color:C2}">視窗面積{{Q.area}}</h1>
+
+        <input type="text" v-model="C" v-bind:style="{color:C}" maxlength="7" />
+        <input type="color" v-model="C" />
+        <input type="color" v-model="C2" />
+    </div>    
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                C: '#673AB7',
+                Q: {
+                    width: 0,
+                    height: 0,
+                    area: 0,
+                },
+                C2: '#888888',
+            },
+            created() {
+                window.addEventListener('resize', this.try1);
+            },
+            destroyed() {
+                window.removeEventListener('resize', this.handleResize);
+            },
+            methods: {
+                try1() {
+                    this.Q.width = window.innerWidth;
+                    this.Q.height = window.innerHeight;
+                    this.Q.area = window.innerWidth * window.innerHeight;
+                }                
+            },             
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+         
+    </form>
+</body>
+</html>

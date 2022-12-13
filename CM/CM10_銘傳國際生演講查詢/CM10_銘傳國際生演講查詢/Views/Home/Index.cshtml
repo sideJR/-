@@ -1,0 +1,50 @@
+﻿<h3>銘傳國際生演講查詢</h3>
+名字：<input id="Q" type="text" />
+<button onclick="FindData()">查詢</button>
+
+<div id="A"></div>
+
+<script>
+    function FindData() {
+        var name = $('#Q').val();
+
+        var MyAPI = "https://api.nationalize.io/?name=" + name;
+
+        $.ajax({
+            url: MyAPI,
+            error: function () {
+                $("#A").append("<br/>抓不到資料");
+            },
+            success: function () {
+
+            }
+        }).then(function (MyData) {
+            $("#A").html("");
+            $("#A").append("<br/>姓名：" + MyData.name);
+            $("#A").append("<br/>國家：" + MyData.country[0].country_id);
+
+            if (MyData.name == "paul") {
+                FindSpeech(0);
+            }
+            if(MyData.name == "michael") {
+                FindSpeech(1);
+            }
+        });
+    }
+
+    function FindSpeech(count) {
+        var MyAPI = 'https://api.joind.in/v2.1/events?filter=past';
+
+        $.ajax({
+            url: MyAPI,
+            error: function () {
+                $("#A").append("<br/>抓不到資料");
+            },
+            success: function () {
+
+            }
+        }).then(function (MyData) {
+            $("#A").append("<br/>演講題目：" + MyData.events[count].name);
+        });
+    }
+</script>

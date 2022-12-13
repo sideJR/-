@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue18_我的框框.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        #C{
+            width: 400px;
+            height: 200px;
+            background-color: lightblue;
+        }
+        #X{
+            width: 400px;
+            height: 300px;
+            background-color: lightyellow;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="X">
+        <h2>{{message}}</h2>
+        <button @click="drawRect">增加框框</button>
+        <button @click="addWidth">寬+10</button>
+        <button @click="subWidth">寬-10</button>
+        <button @click="addHeight">高+10</button>
+        <button @click="subHeight">高-10</button>
+        <br />
+        <canvas id="C"></canvas>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                message: "我的框框",
+                vueCanvas: null,
+                rectWidth: 200,
+                rectHeight: 100,
+            },
+            mounted() {
+                var A = document.getElementById('C');
+                var ctx = A.getContext("2d");
+
+                this.vueCanvas = ctx;
+            },
+            methods: {
+                drawRect() {
+                    this.vueCanvas.clearRect(0, 0, 400, 200);
+                    this.vueCanvas.beginPath();
+                    this.vueCanvas.rect(20, 20, this.rectWidth, this.rectHeight);
+                    this.vueCanvas.stroke();
+                },
+                addWidth() {
+                    this.rectWidth += 10;
+                    this.drawRect();
+                },
+                subWidth() {
+                    this.rectWidth -= 10;
+                    this.drawRect();
+                },
+                addHeight() {
+                    this.rectHeight += 10;
+                    this.drawRect();
+                },
+                subHeight() {
+                    this.rectHeight -= 10;
+                    this.drawRect();
+                },
+            },
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+         
+
+    </form>
+</body>
+</html>

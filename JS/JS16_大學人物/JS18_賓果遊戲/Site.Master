@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JS18_賓果遊戲.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        #A, #B{
+            width: 100px;
+            height: 100px;
+            background-color:white;
+        }
+        #C{
+            width: 50px;
+        }
+        #D{
+            width: 60px;
+        }
+    </style>
+
+    <script>
+        function ChangeBar() {
+            let r = document.getElementById('D').dataset.mode;
+
+            if (r == "game") {
+                document.getElementById('C').disabled = false;
+                document.getElementById('D').dataset.mode = "input";
+            }
+            else {
+                document.getElementById('C').disabled = true;
+                document.getElementById('D').dataset.modee = "game";
+            }
+           
+        }
+        function ChangeText() {
+            let q = document.getElementById('C').value;
+
+            if ((q >= 1) && (q <= 30)) {
+                //alert("數字正確")
+            }
+            else {
+                alert("數字錯誤")
+            }
+           
+        }
+        function ChangeColor(p) {
+            let x = document.getElementById(p);
+            let mycolor = x.dataset.choice;
+
+            if (mycolor == "white") {
+                x.dataset.choice = "yellow";
+                x.style = "background-color:yellow";
+                x.innerText = document.getElementById('C').value;
+            }
+            else {
+                x.dataset.choice = "white";
+                x.style = "background-color:white";
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+    <label for="D">遊戲&nbsp &nbsp 輸入</label>
+    <br />
+
+    <input type="range" id="D" data-mode="game" onchange="ChangeBar()" min="0" max="1" value="0" />
+
+    <input id="C" disabled onchange="ChangeText()" type="text" />
+    <br /><br />
+
+    <button id="A1" data-choice="white" onclick="ChangeColor('A1')">X</button>
+    <button id="B1" data-choice="white" onclick="ChangeColor('B1')">X</button>
+    <button id="C1" data-choice="white" onclick="ChangeColor('C1')">X</button>
+    <br /><br />
+    <button id="A2" data-choice="white" onclick="ChangeColor('A2')">X</button>
+    <button id="B2" data-choice="white" onclick="ChangeColor('B2')">X</button>
+    <button id="C2" data-choice="white" onclick="ChangeColor('C2')">X</button>
+    <br /><br />
+    <button id="A3" data-choice="white" onclick="ChangeColor('A3')">X</button>
+    <button id="B3" data-choice="white" onclick="ChangeColor('B3')">X</button>
+    <button id="C3" data-choice="white" onclick="ChangeColor('C3')">X</button>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+          
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>

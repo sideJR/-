@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Vue17_上傳照片.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+
+    <style>
+        img {
+            width: 30%;
+            margin: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div id="X">
+        <h2>載入圖片{{note}}</h2>
+        <div v-if="!image">
+            <input type="file" @change="onFileChange" />
+        </div>
+        <div v-else>
+            <button @click="removeImage">移除圖片</button>
+            <button @click="changeImage">切換圖片</button>
+            <br />
+            <img :src="image"/>
+        </div>        
+    </div>
+
+    <script>
+        new Vue({
+            el: '#X',
+            data: {
+                image: '',
+                note: '練習',
+            },
+            methods: {
+                onFileChange(e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length) {
+                        alert("無檔案上傳");
+                        return;
+                    }
+                    this.createImage(files[0]);
+                },
+                createImage(file) {
+                    var image = new Image();
+                    var reader = new FileReader();
+                    var vm = this;
+
+                    reader.onload = e => {
+                        vm.image = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
+                removeImage: function (e) {
+                    this.image = '';
+                },
+                changeImage: function (e) {
+                    this.image = 'https://www1.mcu.edu.tw/Apps/SB/data/10/%E6%A0%A1%E5%BE%BD.gif';
+                },
+            }
+        });
+    </script>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+           
+    </form>
+</body>
+</html>
