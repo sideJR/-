@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS12_王經理養貓狗</title>
+</head>
+
+<body>
+
+    <script>
+        //let區域變數
+        let Person = {
+            Nation: "美國",
+            lastName: "王",
+            firstName: "大頭",
+            'Job Title': "經理",
+            fullName: function (title){
+                document.write(this.Nation+this.lastName+this.firstName+title);
+            }
+        };  
+        let Man = {
+          affair: function (){
+              document.write("<br/>");
+              document.write("養"+eval(1)+"個小老婆"); //eval()在執行時運算
+          }  
+        };
+        Man.__proto__ = Person; //表示Man繼承Person，所以可以使用fullName()
+        Man.fullName("老闆");
+        Man.affair();
+        var Pig = new Animal("豬", 2);
+        var Dog = new Animal("小狗", 3);
+        var Cat = new Animal("貓咪", 4);
+        Pig.log();
+        Dog.log();
+        Cat.log();
+        function Animal(name, num){
+            this.name = name;
+            this.num = num;
+            this.log = function (){
+                document.write("<br/>");
+                document.write("養了"+this.num+"隻"+this.name);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

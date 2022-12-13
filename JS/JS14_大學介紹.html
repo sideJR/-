@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS14_大學介紹</title>
+
+    <style>
+        .X {
+            background-color: #ddacfc;
+            position: absolute;
+            /* 左右 上下 後陰影大小 陰影大小 RGBA的A是透明度 */
+            box-shadow: 0px 8px 16px 0px RGBA(0, 0, 0, 0.2);
+            /* 消失 */
+            display: none;
+        }
+
+        .X a {
+            color: black;
+            /* 變直 */
+            display: block;
+            padding: 12px;
+            /* 底線消失 */
+            text-decoration: none;
+        }
+
+        .B {
+            background-color: #508dff;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .D {
+            position: relative;
+            /* 文字變直 */
+            /*            display: inline-block;*/
+        }
+
+        .D a:hover {
+            background-color: #ffa1a1;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>大學介紹</h2>
+    <div class="D">
+        <div id="myDiv" class="X">
+            <a onclick="Img('A1')" href="https://www.google.com/search?q=%E3%84%87%E3%84%9A%CB%8A%E5%B9%BE%E5%85%94&tbm=isch">ㄇㄚˊ幾兔</a>
+            <a onclick="Img('A2')" href="https://www.google.com/search?q=%E5%B0%8F%E7%86%8A%E7%B6%AD%E5%B0%BC&tbm=isch">小熊維尼</a>
+            <a onclick="Img('A3')" href="https://www.google.com/search?q=%E8%A7%92%E8%90%BD%E7%94%9F%E7%89%A9&tbm=isch">角落生物</a>
+            <a onclick="Img('A4')" href="https://www.google.com/search?q=%E5%80%89%E9%BC%A0&tbm=isch&chips=q:%E5%80%89%E9%BC%A0,g_1:%E5%8D%A1%E9%80%9A">倉鼠</a>
+        </div>
+    </div>
+    <button onmouseover="myF()" class="B">選擇可愛圖片區</button>
+    <img id="Image" src="Images/%E5%80%89%E9%BC%A02.jpg" width="200" height="200">
+
+
+    <script>
+        window.onclick = function(event) {
+            if (!even.target.matches('.B')) {
+                var dropdowns = document.getElementsByClassName("X");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+
+        function myF() {
+            document.getElementById("myDiv").classList.toggle("show");
+        }
+
+        function Img(id) {
+            var srcImage;
+
+            switch (id) {
+                case 'A1':
+                    srcImage = "Images/%E3%84%87%E3%84%9A%CB%8A%E5%B9%BE%E5%85%94.jpg";
+                    break;
+                case 'A2':
+                    srcImage = "Images/%E5%B0%8F%E7%86%8A%E7%B6%AD%E5%B0%BC.png";
+                    break;
+                case 'A3':
+                    srcImage = "Images/%E8%A7%92%E8%90%BD%E7%94%9F%E7%89%A9.jfif";
+                    break;
+                case 'A4':
+                    srcImage = "Images/%E5%80%89%E9%BC%A02.jpg";
+                    break;
+            }
+
+            document.getElementById("Image").src = srcImage;
+        }
+    </script>
+</body>
+
+</html>

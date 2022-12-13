@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>				
+		th, td {
+			border: 1px solid pink;
+  			padding: 5px;
+		}
+		table {
+  
+  			border: 2px solid black;
+  			width: 100%;
+		}
+		tr:nth-child(even) {
+ 			 background-color: rgb(250,128,114);
+		}
+		tr:hover {
+			 background-color:rgb(230,230,250);
+		}		
+	</style>
+</head>
+<body>
+<h3>作業4</h3>
+<div>
+   <input type="text" id="data"> 
+   <button id="myBtn"> 送出資料 </button><br><br><hr>
+</div>
+<div>
+<h3>輸出資料</h3>  
+<table id="table"><table>
+
+</div>
+
+<script>
+  var i=0;
+  var score=[];
+  document.getElementById("myBtn").onclick=displayData;
+  
+  function displayData() {
+    var x=document.getElementById("data").value;
+    score.push(x);
+    document.getElementById("table").innerHTML="";
+    td="<th>"+"第n筆資料"+"</th>"+"<th>"+"數值"+"</th>";
+    for (var j=0; j<score.length; j++) {
+       var td=td+"<tr>"+"<td>"+"第 "+(j+1)+" 筆資料"+"</td>"+"<td>"+score[j]+"</td>"+"</tr>";
+       i=j;
+       //window.alert(td);
+       //window.alert(document.getElementById("list").outerHTML);
+    }
+    
+    document.getElementById("table").innerHTML=td;    
+    document.getElementById("data").value="";
+    i++;
+    return false;
+  }
+</script>
+</body>
+
+</html>

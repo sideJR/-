@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS16_大學人物</title>
+</head>
+
+<body>
+
+    <script>
+        function Student(Id, Name, Age){
+            this.Id = Id;
+            this.Name = Name;
+            this.Age = Age;
+            
+            this.Show = function (){
+                return ("學號："+this.Id+" 姓名："+this.Name+" 年齡："+this.Age+"歲");
+            }
+        }
+        var Student1 = new Student("s001", "陳大頭", 20);
+        var Student2 = new Student("s002", "王阿花", 19);
+        var Me = new Student("08130263", "蔡孟臻", 20);
+        
+        document.write(Student1.Show());
+        document.write("<br/>");
+        document.write(Student2.Show());
+        document.write("<br/>");
+        document.write(Me.Show());
+        
+        //const表示固定(constant)
+        const Teacher = {
+            Dept: "資管系", Name: "張小呆"
+        };
+        const Position = {Title: "副教授"};
+        
+        //Object.assign產生物件
+        const Teacher1 = Object.assign(Teacher, Position);
+        document.write("<br/><br/>");
+        document.write(Teacher1.Dept+Teacher1.Name+Teacher1.Title);
+        
+        //ES6(js第6代語法)產生物件
+        class Staff{
+            constructor(name, position){
+                this.name = name;
+                this.position = position;
+            }
+        }
+        
+        const Staff1 = new Staff("孫美美", "助教");
+        document.write("<br/>");
+        document.write(Staff1.name+Staff1.position);
+        
+        //JSON產生物件
+        var Team = {
+            name: "校隊",
+            kind: "籃球",
+            members: {
+                couch: {
+                    main: "許大華",
+                    second: "蘇自大"
+                },
+                manager: "張小妹",
+                header: {
+                    main: "附長大",
+                    second: "付長二"
+                }
+            }
+        };
+        document.write("<br/>");
+        document.write(Team.kind+Team.name+" 總教練"+Team.members.couch.main+" 助理教練"+Team.members.couch.second+" 球經"+Team.members.manager+" 隊長"+Team.members.header.main+" 副隊長"+Team.members.header.second);
+    </script>
+
+</body>
+
+</html>

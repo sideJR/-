@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS10_KiKiLaLa繪畫班</title>
+</head>
+
+<body>
+    <h1>KIKI LALA 繪畫班</h1>
+
+    <svg id="A" height="230">
+        <!--圓-->
+        <circle id="a3" onclick="Touch('a3')" cx="250" cy="0" r="30" fill="red"></circle>
+        <line x1="0" y1="0" x2="200" y2="48" style="stroke:rgb(255, 255, 0); stroke-width:8"></line>
+        <!--橢圓-->
+        <ellipse cx="50" cy="33" rx="50" ry="10" fill="blue"></ellipse>
+        <!--多角形-->
+        <polygon id="a2" onclick="Touch('a2')" points="50, 50, 100, 50, 120, 120, 100, 120, 70, 100" fill="rgb(0, 255, 0)"></polygon>
+        <!--四方形-->
+        <rect id="a1" onclick="Touch('a1')" x="20" y="50" width="120" height="40" fill="black"></rect>
+    </svg>
+    
+    <svg id="B" height="200" width="100%">
+        <!--50旋轉角度，(100,100)旋轉中心-->
+        <text x="50" y="20" fill="red" transform="rotate(0, 100, 100)">好好學畫畫喔=3=</text>
+        <image id="b1" onmouseover="Move('b1')" onclick="Disappear('b1')" href="https://www.niusnews.com/upload/imgs/default/2019FebJenny/0218KikiLala/4.jpg" x="0" y="50" height="150px" width="150px"/>
+        <image id="b2" onmouseover="Move('b2')" onclick="Disappear('b2')" href="/Images/shy.jpg" x="250" y="50" height="150px" width="150px"/>
+    </svg>
+
+    <h3>繪畫，活化孩子美感細胞</h3>
+    
+    <script>
+        function Touch(elm){
+            var x = document.getElementById(elm);
+            x.setAttribute("fill","white");
+        }
+        function Move(elm){
+            var y = document.getElementById(elm);
+            y.setAttribute("width","200px");
+            y.setAttribute("height","50px");
+        }
+        function Disappear(elm){
+            var z = document.getElementById(elm);
+            z.setAttribute("width","0px");
+            z.setAttribute("height","0px");
+        }
+    </script>
+    
+</body>
+
+</html>

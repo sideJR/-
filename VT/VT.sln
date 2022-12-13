@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VT_搜索網", "VT\VT_搜索網.csproj", "{CAD41FFE-B695-48EE-B7CD-D857BAAE3116}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAD41FFE-B695-48EE-B7CD-D857BAAE3116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD41FFE-B695-48EE-B7CD-D857BAAE3116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD41FFE-B695-48EE-B7CD-D857BAAE3116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD41FFE-B695-48EE-B7CD-D857BAAE3116}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7B778CB-668D-4FB4-8ED9-8FBDCE035B77}
+	EndGlobalSection
+EndGlobal

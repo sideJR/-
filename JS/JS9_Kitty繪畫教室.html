@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>JS9_Kitty繪畫教室</title>
+    </head>
+
+    <body>
+        <h2>Canvas繪畫教室</h2>
+
+        <canvas id="B" style="border: 3px solid black" width="800" height="600"></canvas>
+        
+        <button onclick="Disappear()">矩形消失</button>
+        <button onclick="Appear()">矩形出現</button>
+        <button onclick="Disappear_Image()">圖片消失</button>
+        <button onclick="Appear_Image()">圖片出現</button>
+        
+        <script>
+            //矩形
+            var x = document.getElementById("B");
+            var pic1 = x.getContext("2d");
+            pic1.fillStyle = "red";
+            //從(20,20)到(150,75)的方形，往右(下)增加
+            pic1.fillRect(20, 20, 150, 75);
+            
+            //圓形
+            var pic2 = x.getContext("2d");
+            pic2.beginPath();
+            //arc(x,y,r,a,b)以x,y為中心，以r為半徑畫弧，a是起始角度，b是終點角度。2*PI指360度
+            pic2.arc(95, 40, 40, 0, Math.PI);
+            pic2.stroke();
+            
+            //文字
+            var pic3 = x.getContext("2d");
+            pic3.font = "30px Airal";
+            pic3.strokeText("Hello Kitty", 180, 70);
+            
+            //漸層矩形
+            var pic4 = x.getContext("2d");
+            var y = pic4.createLinearGradient(0, 0, 200, 0);
+            y.addColorStop(0, "red");
+            y.addColorStop(1, "white");
+            pic4.fillStyle = y;
+            pic4.fillRect(20, 120, 150, 75);
+            
+            //半圓
+            var pic5 = x.getContext("2d");
+            var z = pic5.createLinearGradient(75, 50, 5, 90, 60, 100);
+            z.addColorStop(0, "red");
+            z.addColorStop(1, "white");
+            pic5.arc(95, 40, 40, 0, Math.PI);
+            pic5.fillStyle = z;
+            pic5.fill();
+            
+            //放入圖片
+            var pic6 = x.getContext("2d");
+            var Animal = new Image();
+            Animal.onload = function(){
+                pic6.drawImage(Animal, 100, 100);
+            }
+            Animal.src = "/Images/shy.jpg";                        
+        </script>
+        <script>
+            //矩形消失
+            function Disappear(){
+                setTimeout("pic1.clearRect(20, 20, 150, 70)",3000);
+            }
+            //圖片消失
+            function Disappear_Image(){                
+                setTimeout("pic6.clearRect(100, 100, Animal.width, Animal.height)",5000);
+            }
+            //矩形出現
+            function Appear(){
+                pic1.fillRect(20, 20, 150, 75);
+            }
+            //圖片出現
+            function Appear_Image(){                
+                pic6.drawImage(Animal, 100, 100);
+            }
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>作業5</h2>
+
+<ul id="list"></ul>
+
+
+<script>
+function Person(name,cscore,escore,average)
+{
+  this.name = name;
+  this.cscore=cscore;
+  this.escore=escore;
+  this.average=(parseInt(cscore)+parseInt(escore))/2;
+  //alert(this.average);
+  
+}
+var x=prompt("是否輸入成績?是:任意數值 否:輸入-1");
+var y=parseInt(x);
+var str="",i=0;
+var score=new Array();
+
+while(y!=-1)
+{	
+    	score[i]=new Person(prompt("輸入姓名"),prompt("輸入國文成績"),prompt("輸入英文成績"));
+        /*str=str+"<li>"+score[i].name + ',國文成績:'+score[i].cscore+'分 英文成績:'+score[i].escore+'分 平均:'+score[i].average+'分'+"</il>";
+        document.getElementById("list").innerHTML = str;*/               
+        var x=prompt("是否繼續輸入?是:任意數值 否:輸入-1");
+		var y=parseInt(x);
+        
+        if(y==-1)        
+            break;  
+        
+        i++; 
+}
+
+var arr=new Array();
+
+for(var j=0;j<i+1;j++)
+{
+	arr[j] = [score[j].name, score[j].cscore, score[j].escore, score[j].average];
+}
+function descend(x,y){
+    return y[3] - x[3];  //按照陣列的第1個值升序排列
+}
+arr.sort(descend);
+
+for(var j=0;j<i+1;j++)
+{
+	str=str+"<li>"+'第'+(j+1)+'名'+arr[j][0] + ',國文成績:'+arr[j][1]+'分 英文成績:'+arr[j][2]+'分 平均:'+arr[j][3]+'分'+"</li>";
+    //alert(str);
+        document.getElementById("list").innerHTML = str;
+}
+
+</script>
+
+</body>
+</html>

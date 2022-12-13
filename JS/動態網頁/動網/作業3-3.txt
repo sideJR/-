@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>連續輸入成績</h2>
+
+<ul id="list"></ul>
+<button onclick="myFunction()">排列</button>
+<ul id="list2"></ul>
+
+<script>
+var score=new Array();
+var count=0;
+var x=prompt("是否輸入成績?否:輸入-1");
+var y=parseInt(x);
+document.getElementById("list").innerHTML="";
+li="";
+while(y!=-1)
+{
+	for(var i=0;;i++)
+    {
+    	score[i]=new Array(3);
+        for(var j=0;j<3;j++)
+        {
+        	if(j==0)
+            {
+            	var x=prompt("請輸入國文成績:");
+                var y=parseInt(x);
+            	score[i][j]=y;
+                                
+                li=li+"<li>"+"國文成績:"+score[i][j]+"分"+"</li>";
+                //document.getElementById("demo").innerHTML = score[i][j];
+            }
+            else if(j==1)
+            {
+            	var x=prompt("請輸入英文成績:");
+                var y=parseInt(x);
+            	score[i][j]=y;
+                                
+                li=li+"<li>"+"英文成績:"+score[i][j]+"分"+"</li>";
+                //document.getElementById("demo").innerHTML =score[i][j];
+            }            
+            else if(j==2)
+            {            	
+            	score[i][j]=score[i][0]+score[i][1];
+                                
+                li=li+"<li>"+"平均:"+score[i][j]/2+"分"+"</li>";
+                //document.getElementById("demo").innerHTML =score[i][j];
+            }            
+            if(y==-1)
+        	{
+        		break;
+       		}
+            document.getElementById("list").innerHTML=li;
+        }
+        if(y==-1)
+        {
+        	count=i;
+            break;
+        }
+    }
+}
+
+function myFunction() 
+{
+ 	function descend(x,y)
+ 	{
+   	 return y[2] - x[2];  
+    }
+    var arr=new Array();
+    var str="";
+    for(var k=0;k<count;k++)
+    {
+    	arr[k]=[score[k][0],score[k][1],(score[k][0]+score[k][1])/2];
+    }
+    arr.sort(descend);
+    for(var k=0;k<count;k++)
+    {
+    	str=str+"<li>"+"國文成績:"+arr[k][0]+"分"+"</li>"+"<li>"+"英文成績:"+arr[k][1]+"分"+"</li>"+"<li>"+"平均:"+arr[k][2]+"分"+"</li>";
+        document.getElementById("list2").innerHTML=str;        
+    }    
+}
+</script>
+
+</body>
+</html> 

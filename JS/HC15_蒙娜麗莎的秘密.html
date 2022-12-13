@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HC15_蒙娜麗莎的秘密</title>
+
+    <style>
+        ul{
+            transform-style: preserve-3d;
+            perspective-origin: center center;
+            transform: rotateX(40deg);
+            transition: all 0.4s;
+        }
+        li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: coral;
+            background-size: 300% 300%;
+            
+            overflow: hidden;
+            backface-visibility: hidden;
+            transition-delay: 0.3s;
+        }
+        /*nth-of-type(n) 指第n個出現ul的地方*/
+        ul:nth-of-type(1) {
+            width: 120px;
+            height: 80px;
+        }
+        /*nth-of-type(n) li ul內部所有的li區域*/
+        ul:nth-of-type(1) li {
+            background-image: url(/Images/lisa.jpg);
+        }
+        
+        li:nth-of-type(1){
+            background-position: center center; 
+            transform: none;
+        }
+        li:nth-of-type(2){
+            background-position: right center;
+            left: 100%;
+            /*以左中為基準轉180度*/
+            transform-origin: left center;
+            transform: rotateY(180deg);
+        }
+        li:nth-of-type(3){
+            background-position: center bottom;
+            top: 100%;
+            transform-origin: center top;
+            transform: rotateX(-180deg);
+        }
+        li:nth-of-type(4){
+            background-position: left center;
+            left: -100%;
+            transform-origin: right center;
+            transform: rotateY(-180deg);
+        }
+        li:nth-of-type(5){
+            background-position: center top;
+            top: -100%;
+            transform-origin: center bottom;
+            transform: rotateX(180deg);
+        }
+        li:nth-of-type(6){
+            background-position: right bottom;
+            top: 100%;
+            left: 100%;
+            transform-origin: center top;
+            transform: rotateX(-180deg);
+        }
+        li:nth-of-type(7){
+            background-position: left bottom;
+            top: 100%;
+            left: -100%;
+            transform-origin: right center;
+            transform: rotateY(-180deg);
+        }
+        li:nth-of-type(8){
+            background-position: left top;
+            top: -100%;
+            left: -100%;
+            transform-origin: center bottom;
+            transform: rotateX(180deg);
+        }
+        li:nth-of-type(9){
+            background-position: right top;
+            top: -100%;
+            left: 100%;
+            transform-origin: left center;
+            transform: rotateY(180deg);
+        }
+        
+        body{
+            margin-top: 100px;
+            margin-left: 200px;
+            color: white;
+        }
+        /*hover 滑鼠滑入*/
+        ul:hover :nth-of-type(2){
+            transform: rotateY(0);
+            transition-delay: 0s;
+        }
+        ul:hover :nth-of-type(3){
+            transform: rotateX(0);
+            transition-delay: 0s;
+        }
+        ul:hover :nth-of-type(4){
+            transform: rotateY(0);
+            transition-delay: 0s;
+        }
+        ul:hover :nth-of-type(5){
+            transform: rotateX(0);
+            transition-delay: 0s;
+        }
+        ul:hover :nth-of-type(6){
+            transform: rotateY(0);
+            transition-delay: 0.2s;
+        }
+        ul:hover :nth-of-type(7){
+            transform: rotateX(0);
+            transition-delay: 0.2s;
+        }
+        ul:hover :nth-of-type(8){
+            transform: rotateY(0);
+            transition-delay: 0.2s;
+        }
+        ul:hover :nth-of-type(9){
+            transform: rotateX(0);
+            transition-delay: 0.2s;
+        }
+        
+        ul:hover{
+            transform: translateZ(100px) rotateX(20deg);
+            z-index: 999;
+        }
+        
+        ul:nth-of-type(2){
+            width: 90px;
+            height: 130px;
+        }
+        ul:nth-of-type(2) li{
+            background-image: url(/Images/gogh.jpg);
+        }
+        
+        .gallery{
+            width: 50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: row wrap;
+            
+            perspective: 700px;
+        }
+        
+        ul:nth-of-type(3){
+            width: 160px;
+            height: 140px;
+        }
+        ul:nth-of-type(3) li{
+            background-image: url(/Images/shy.jpg);
+        }
+        
+        ul:nth-of-type(4){
+            width: 150px;
+            height: 120px;
+        }
+        ul:nth-of-type(4) li{
+            background-image: url(/Images/%E5%80%89%E9%BC%A01.jpg);
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</body>
+
+</html>

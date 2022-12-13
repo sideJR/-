@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS19_山洞與隧道探險</title>
+</head>
+
+<body>
+<!--
+    <script>
+        //堆疊：先進後出
+        function Stack(){
+            this.count = 0;
+            this.storage = {};
+            //放入進洞者
+            this.push = function (value){
+                this.storage[this.count] = value;
+                this.count++;
+            }
+            //刪除進洞者
+            this.pop = function(){
+                if(this.count == 0){
+                    return "洞穴已空";
+                }
+                
+                this.count--;
+                var result = this.storage[this.count];
+                delete this.storage[this.count];
+                return result;
+            }
+            this.size = function(){
+                return this.count;
+            }
+        }
+        var Team = new Stack();
+        Team.push("張三");
+        Team.push("李四");
+        Team.push("王五");
+        
+        document.write("進洞人數："+Team.size());
+        document.write("<br/>");
+        //writeln()不會換行，而是空一格
+        document.writeln("出洞順序：");
+        
+        var people = Team.pop();
+        
+        document.writeln(people);
+        
+        people = Team.pop();
+        document.writeln(people);
+        
+        people = Team.pop();
+        document.writeln(people);
+        
+        people = Team.pop();
+        document.writeln(people);
+    </script>
+-->
+    
+    <script>
+        //Queue：先進先出
+        function Queue(){
+            var collection = [];
+            //新增成員
+            this.enqueue = function (element){
+                collection.push(element);
+            }
+            //刪除成員
+            this.dequeue = function (){
+                return collection.shift();
+            }
+            this.size = function (){
+                return collection.length;
+            }
+            //列印成員
+            this.print = function (){
+                document.write("<br/>");
+                document.write("隧道內成員："+collection);
+                document.write("<br/>");
+            }
+            //領隊
+            this.front = function (){
+                return collection[0];
+            }
+            //隊伍是否為空
+            this.isEmpty = function (){
+                return collection.length == 0;
+            }
+        }
+        var Team = new Queue();
+        Team.enqueue("張三");
+        Team.enqueue("李四");
+        Team.enqueue("王五");
+        Team.enqueue("蘇六");
+        
+        var People = Team.dequeue();        
+        document.write(People+"出隧道");
+        document.write("<br/>");
+        
+        var People = Team.dequeue();        
+        document.write(People+"出隧道");
+        document.write("<br/>");
+        
+        var People = Team.dequeue();        
+        document.write(People+"出隧道");
+        document.write("<br/>");
+        
+        var People = Team.dequeue();        
+        document.write(People+"出隧道");
+        document.write("<br/>");
+        
+        Team.print();
+        
+        if(Team.isEmpty()){
+            document.write("隊伍全離開隧道");    
+        }
+        else{
+            document.write("隊伍頭是："+Team.front());
+        }
+                
+        document.write("<br/>");
+        document.write("隧道內人數："+Team.size());
+        
+        
+    </script>
+</body>
+
+</html>

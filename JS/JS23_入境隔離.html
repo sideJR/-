@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS23_入境隔離</title>
+    <script>
+        var sp = " ";
+        //刪除資料
+        function Delete_Row(number){
+            let CurrentRow = "row"+number;
+            document.getElementById(CurrentRow).outerHTML = ""; 
+        }
+        //編輯資料
+        function Edit_Row(number){
+            let CurrentName = "name_row"+number;
+            let name = document.getElementById(CurrentName);
+            
+            let Q1 = "<input id='name_text"+number+"'";
+            let Q2 = " type='text'";
+            let Q3 = "value='請輸入'>";
+            let Q = Q1+sp+Q2+sp+Q3;
+            
+            name.innerHTML = Q;
+        }
+        //儲存資料
+        function Save_Row(number){
+            let CurrentNametext = "name_text"+number;
+            let CurrentNamerow = "name_row"+number;
+            var name_val = document.getElementById(CurrentNametext).value;
+            document.getElementById(CurrentNamerow).innerHTML = name_val;
+        }
+    </script>
+</head>
+<body>
+    <h3>入境隔離名單</h3>
+    <table id="X" border="1">
+        <tr>
+            <th>姓名</th>
+        </tr>
+        <tr id="row1">
+            <td id="name_row1">王阿花</td>
+            <td>
+                <input type="button" value="編輯" onclick="Edit_Row('1')">
+                <input type="button" value="刪除" onclick="Delete_Row('1')">
+                <input type="button" value="儲存" onclick="Save_Row('1')">
+            </td>
+        </tr>
+        <tr id="row2">
+            <td id="name_row2">陳大頭</td>
+            <td>
+                <input type="button" value="編輯" onclick="Edit_Row('2')">
+                <input type="button" value="刪除" onclick="Delete_Row('2')">
+                <input type="button" value="儲存" onclick="Save_Row('2')">
+            </td>
+        </tr>
+        <tr id="row3">
+            <td id="name_row3">張三</td>
+            <td>
+                <input type="button" value="編輯" onclick="Edit_Row('3')">
+                <input type="button" value="刪除" onclick="Delete_Row('3')">
+                <input type="button" value="儲存" onclick="Save_Row('3')">
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

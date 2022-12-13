@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MM1_毛毛購物網.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET  應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script>
+        function ShowThanks() {
+            alert("感謝申請");
+        }
+        function ShowButton() {
+            document.getElementById("Z").style.visibility = "visible";
+        }
+    </script>
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div style="font-size:200%">毛毛購物網</div>
+
+        <h4>
+            <a runat="server" href="/Default">首頁</a>
+            <a runat="server" href="/Register">註冊</a>
+        </h4>
+
+        <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+        
+        <asp:Panel ID="Panel1" runat="server" BorderStyle="Inset" Height="40px" Width="330px">
+            <asp:Label ID="labAccount" runat="server" Width="30px" Text="帳號"></asp:Label>
+            <asp:TextBox ID="txtAccount" runat="server" Width="80px"></asp:TextBox>
+            
+            <asp:Label ID="labPassword" runat="server" Width="30px" Text="密碼"></asp:Label>
+            <asp:TextBox ID="txtPassword" runat="server" Width="80px"></asp:TextBox>
+            
+            <asp:Button ID="btnLogin" runat="server" Width="60px" Text="Login" OnClick="btnLogin_Click" />
+        </asp:Panel>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            
+    </form>
+</body>
+</html>

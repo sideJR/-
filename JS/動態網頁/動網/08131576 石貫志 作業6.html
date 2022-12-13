@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+/*為了讓2個按鈕能夠排在一起的div樣式-->*/
+#buttonLeft {						
+                        width: 260px;
+                        height: 150px;
+                        text-align: left;
+                        float: left;
+                }
+
+</style>
+<body>
+<script>  
+//此FUNCTION 也可以放 <head> 中 
+/*印出資料之函數*/
+function show() {
+	
+    //宣告變數存放表單傳過來的值
+    var name = document.forms["form"]["Name"].value;
+    //document.getElementById('form').Name.value; 這種寫法也可以
+    var account = document.forms["form"]["Text"].value;   
+    var password = document.forms["form"]["Password"].value;
+	var date = document.forms["form"]["date"].value;
+    var email = document.forms["form"]["Email"].value;
+    var identity = document.forms["form"]["Identity"].value;
+    
+    //用彈出視窗印出資料
+    alert('您輸入的資料如下：\n姓名：'+name+'\n帳號：'+account+'\n'+'密碼：'+password+'\n'+
+    '日期：'+date+'\n'+'Email：'+email+'\n'+'身分證字號：'+identity);
+    
+    //在頁面印出資料
+    document.getElementById('beginning').textContent = '您輸入的資料如下：';
+    //document.getElementById('outN').innerHTML = '姓名：' + name ; 這種寫法也可以
+    document.getElementById('outN').textContent = '姓名：' + name ;
+    document.getElementById('outT').textContent = '帳號：' + account ;
+    document.getElementById('outP').innerHTML = '密碼：' + password ;
+	document.getElementById('outD').innerHTML = '日期：' + date ;	
+    document.getElementById('outE').innerHTML = 'Email：' + email ;	
+    document.getElementById('outI').innerHTML = '身分證字號：' + identity 
+     
+}
+
+//檢驗必填表單資料之函數
+function validateForm() {
+  //宣告變數存放表單傳過來的值
+  var name = document.forms["form"]["Name"].value;
+  var account = document.forms["form"]["Text"].value;
+  var password = document.forms["form"]["Password"].value;
+  var indentity = document.forms["form"]["Identity"].value;
+  
+  if (name == "") {   //如果沒有填的話
+    alert("姓名為必填欄位！");
+    return false;
+  }
+  if (account == "") {
+    alert("帳號為必填欄位！");
+    return false;
+  }
+  if(password == ""){
+  	 alert("密碼為必填欄位！");
+    return false;
+  }
+  if(indentity == ""){
+  	 alert("身分證字號為必填欄位！");
+    return false;
+  }
+          checkID(indentity);
+}
+
+//檢驗身分證字號是否合法
+
+function checkID(idStr){
+  // 依照字母的編號排列，存入陣列備用。
+  var letters = new Array('A', 'B', 'C', 'D', 
+      'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 
+      'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+      'X', 'Y', 'W', 'Z', 'I', 'O');
+  // 依照字母編號儲存各個乘數
+  var multiply = new Array(1, 9, 8, 7, 6, 5, 
+                           4, 3, 2, 1);  
+  var nums = new Array(2);	
+  
+  var firstChar;
+  var firstNum;
+  var lastNum;
+  var total = 0;
+  // 撰寫「正規表達式」。第一個字為英文字母
+  // 第二個字為1或2，後面跟著8個數字，不分大小寫。
+  var regExpID=/^[a-z](1|2)\d{8}$/i; 
+  //以變數儲存正規表達式，前後要用「/」包起來
+  //^代表開頭要是後面的格式(a~z)
+  //[a-z]代表a~z任一字母，出現1次
+  //|代表或，(1|2)代表一定要符合1或2
+  //\d代表任一數字，{8}代表出現8次
+  //$代表最後的格式，x$代表最後要為x
+  // 使用「正規表達式」檢驗格式
+  if (idStr.search(regExpID)==-1) {
+    // 基本格式錯誤，-1可以代表布林值False
+	alert("身份證字號格式錯誤");
+   return false;
+  } else {
+	// 取出第一個字元和最後一個數字。
+	firstChar = idStr.charAt(0).toUpperCase();
+	lastNum = idStr.charAt(9);
+  }
+  // 找出第一個字母對應的數字，並轉換成兩位數數字。
+  for (var i=0; i<26; i++) {
+	if (firstChar == letters[i]) {
+	  firstNum = i + 10;                       //A為10，B為11，C為12，依此類推······
+	  nums[0] = Math.floor(firstNum / 10);	
+      											//Math.floor()函式會回傳小於等於所給數字													  的最大整數。
+	  nums[1] = firstNum - (nums[0] * 10);
+	  break;
+	} 
+  }
+  // 執行加總計算
+  for(var i=0; i<multiply.length; i++){
+    if (i<2) {
+      total += nums[i] * multiply[i];
+    } else {
+      total += parseInt(idStr.charAt(i-1)) * 	//把char型別轉換為int型別
+               multiply[i];
+    }
+  }
+  // 和最後一個數字比對
+  if ((10 - (total % 10))!= lastNum) {
+	alert("身份證號碼寫錯了！");
+	return false;
+  } 
+  
+  show();						//如果身分證字號符合規則，呼叫印出函數
+  return true;
+}
+
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js">
+email: {
+  presence: true, // Email 是必填欄位
+  email: true // 需要符合 Email 格式
+},
+</script>
+
+<h1>08131576 石貫志 作業6</h1>
+<!--資料方塊 (有文字、密碼、日期、電子郵件、身份證字號)部分-->
+<form id="form" action="#">
+<table border=1 width=80 align=center>
+<!--多行文字方塊-->
+<tr><td>姓名：<td><textarea name="Name"></textarea></td></td>
+<tr><td>帳號：<td><textarea name="Text"></textarea></td></td>
+<tr><tr><td>密碼：</td><td><input type="password" name="Password"></td></tr>
+<tr><tr><td>日期：</td><td><input type="date" name="date"></td></tr>
+<tr><tr><td>Email：</td><td><input type="email" name="Email"></td></tr>
+<tr><tr><td>身分證字號：</td><td><input type="text" name="Identity"></td></tr>
+</table>
+
+<form>
+<br>
+請選擇喜歡吃的水果<br><br>
+<!--選擇鈕-->
+<input type="radio" name="Fruit" value="Apple"> 蘋果<br>
+<input type="radio" name="Fruit" value="Bananas"> 香蕉<br>
+<input type="radio" name="Fruit" value="Both"> 兩者都喜歡<br>
+<input type="radio" name="Fruit" value="None"> 兩者都不喜歡<br>
+<input type="radio" name="Fruit" value="AllNone"> 以上皆非<br>
+</form>
+
+<form>
+<p>請勾選您想購買的項目</p>
+<!--核取方塊-->
+<input type="checkbox" value="1" name="Product_1"> 商品 1<br>
+<input type="checkbox" value="2" name="Product_2"> 商品 2<br>
+<input type="checkbox" value="3" name="Product_3"> 商品 3<br>
+
+</form>
+<br>
+<!--下拉式清單(單選)-->
+<p>請選擇喜歡的狗狗(以下按鈕之背景圖片)</p>
+<select name = "select_one" size = "1">
+<option value="4">第1隻狗狗的耳朵？</option>
+<option value="5">第2隻狗狗</option>
+<option value="6">都不喜歡</option>
+<br>
+</select>
+</form>
+<br>
+<br>
+<p>請點選以下任1按鈕繳交資料</p>
+<!--按鈕(用圖形)-->
+<!--按鈕有2種寫法-->
+<div id = "buttonLeft">
+<input type="button" style="color:blue;width:260px;height:160px;background-image:url('https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.0-9/s960x960/74843426_484973565427689_8979701413823119360_o.jpg?_nc_cat=101&_nc_sid=85a577&_nc_ohc=nTyq4eTMDXoAX_kq8nz&_nc_ht=scontent.ftpe7-4.fna&_nc_tp=7&oh=182ce68a3165904af8f4327fc450b052&oe=5F12BA27');" alt="沒有畫面" onclick="validateForm()"value="有背景圖片的按鈕1">
+</div>
+
+<button type="button"> 
+ <img src= "https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.0-9/s960x960/74843426_484973565427689_8979701413823119360_o.jpg?_nc_cat=101&_nc_sid=85a577&_nc_ohc=nTyq4eTMDXoAX_kq8nz&_nc_ht=scontent.ftpe7-4.fna&_nc_tp=7&oh=182ce68a3165904af8f4327fc450b052&oe=5F12BA27" alt="沒有畫面" width="260" height="150"onclick="validateForm()">有背景圖片的按鈕2</button> 
+
+<br>
+<br>
+<!--下拉式清單(複選)-->
+<p>請選擇想要的禮物(可複選，請按Ctrl+滑鼠左鍵)</p>
+<select name = "list" size = "3" multiple="multiple">
+    <option value = "1">巧克力</option>
+    <option value = "2">榴槤</option>
+    <option value = "3">老鼠粄</option>
+    <option value = "4">再更多禮物！</option>
+    <option value = "5">上面的都不要</option>
+</select>
+<p id="beginning"></p>
+<p id="outN"></p>
+<p id="outT"></p>
+<p id="outP"></p>
+<p id="outD"></p>
+<p id="outE"></p>
+<p id="outI"></p>
+
+</body> 
+
+</html>

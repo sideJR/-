@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS13_悠閒下午茶</title>
+    
+    <style>
+        li {
+           color: deeppink;
+        }
+        li[data-mychoice = "蛋糕"]{
+            color: red;
+            background-color: aqua;
+        }
+        li[data-mychoice = "餅乾"]{
+            color: green;
+        }
+        li[data-num = "1"]{
+            background-color: #c0ffc0;
+        }        
+        li[data-num = "2"]{            
+            background-color: #9a91ff;
+        }
+        li[data-num = "2"][data-mychoice = "蛋糕"]{            
+            background-color: #ffbebe;
+        }
+        li[data-num = "3"]{
+            background-color: #eaff91;
+        }   
+        li[data-num = "3"][data-mychoice = "餅乾"]{
+            background-color: #ffbebe;
+        }   
+    </style>
+</head>
+<body>
+    <h3>下午茶Menu</h3>
+    <ul class="X">
+        <!-- data-隱藏資料變數 -->
+        <li id="X1" data-num = "1" data-mychoice = "蛋糕">A餐</li>
+        <li id="X2" data-num = "1" data-mychoice = "餅乾">B餐</li>
+    </ul>
+    <div id="Y"></div>
+    <button onclick="Change('X1')">A餐加1杯</button>
+    <button onclick="Change('X2')">B餐加1杯</button>
+    
+    <script>
+        var A = document.querySelector(".X");
+        A.addEventListener("click", Order, false);
+        //點餐
+        function Order(e){
+            var CoffeeNum = e.target.dataset.num;
+            var OtherFood = e.target.dataset.mychoice;
+            var C = document.getElementById("Y");
+            
+            C.innerHTML = `<span style='color:blue'>${CoffeeNum}杯咖啡以及${OtherFood}<span/>`;
+        }
+        //增加杯數
+        function Change(id){
+            var Z = document.getElementById(id);
+            var CupNumber = parseInt(Z.dataset.num)+1;
+            Z.dataset.num = CupNumber;  
+            Order();
+        }
+    </script>
+</body>
+</html>

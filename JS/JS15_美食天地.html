@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS15_美食天地</title>
+</head>
+
+<body>
+
+    <script>
+        const food = [
+            {name: "香蕉", type: "水果"},
+            {name: "蘋果", type: "水果"},
+            {name: "巧克力", type: "糖果"},
+            {name: "橘子", type: "水果"},
+        ];
+        //map像倉庫
+        var foodname = food.map(item => item.name);
+        
+        //pop()刪除最後1個,shift()刪除第1個
+        lastfoodname = foodname.shift();
+        document.writeln("刪除", lastfoodname);
+        
+        lastfoodname = "餅乾";
+        //push()加到最後1個,unshift()加到第1個
+        foodname.unshift(lastfoodname);
+        document.writeln("增加", lastfoodname);
+        
+        document.writeln("<br/>名稱：");
+        foodname.forEach(
+            //先item,後index
+            function (item, index){
+                document.writeln(index+1, ".", item, " ");
+            }
+        )
+        document.writeln("<br/><br/>");
+        
+        var foodtype = food.map(item => item.type);
+        
+        lastfoodtype = foodtype.shift();
+        document.writeln("刪除", lastfoodtype);
+        
+        lastfoodtype = "糖果";
+        foodtype.unshift(lastfoodtype);
+        document.writeln("增加", lastfoodtype);
+        
+        document.writeln("<br/>");
+        document.writeln("分類：");    
+        foodtype.forEach(
+            function (item, index){
+                document.writeln(index+1, ".", item, " ");
+            }
+        )
+        
+        document.writeln("<br/><br/>說明：");
+        for(var i=0; i<foodname.length; i++){
+            document.writeln("<br/>");
+            document.writeln(foodname[i], "是，", foodtype[i]);
+        }
+    </script>
+
+</body>
+
+</html>
